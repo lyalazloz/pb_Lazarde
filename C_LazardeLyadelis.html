@@ -25,7 +25,8 @@
 
             //retornar un string con el nombre y apellido del usuario. (con template string)
             getFullName() {                    
-                return (`${this.nombre} ${this.apellido}`)
+                console.log((`${this.nombre} ${this.apellido}`))
+                return
             }
 
             //agregar una mascota al arreglo de mascotas del usuario.
@@ -37,6 +38,7 @@
             //retornar la cantidad de mascotas que tiene el usuario       
             getMascotas() {
                 console.log (this.mascotas.length)
+                return
             }
 
             //consingna 2.2
@@ -58,23 +60,30 @@
 
         //test
 
-        let libros = [
-            {nombre: 'El señor de las moscas', autor: 'William Golding'},
-            {nombre: 'Fundacion', autor: 'Isaac Asimov'}
-        ];
-        let mascotasUsuario = [" mono", " delfin"]
+        let nombre ="Lya";
+        let apellido = "Laz";
+        let libros = [];
+        let mascotas = [];
 
-        const usuario = new Usuario("PinPon", "EsUnMuñeco", libros, mascotasUsuario);
-
+        const usuario = new Usuario(nombre, apellido, libros, mascotas); //opcion 1
+        const usuario0 = new Usuario("PinPon", "EsUnMuñeco", libros, mascotas); //opcion 2
+        const usuario1 = new Usuario("Sebastián", "Otero", [], []); //opcion 3
+        
         console.log(usuario)
-        console.log(usuario.getFullName());
+        console.log(usuario0)
+        console.log(usuario1)
+        usuario.getFullName();
+
         usuario.addMascota(" canguro");
-        console.log(`mascotas de usuario: ${mascotasUsuario}`)
+        usuario0.addMascota(" mono");
+        usuario1.addMascota(" delfin");
         usuario.getMascotas()
 
         usuario.addBook("Una Canción para Lya", "George R.R. Martin")
+        usuario.addBook("El señor de las moscas", "William Golding")
+        usuario.addBook("Fundacion", "Isaac Asimov")
         usuario.getBooks()       
            
-    </script>   
-</body>
+    </script> 
+  </body>
 </html>
