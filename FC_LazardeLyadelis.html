@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafío 1</title>
+</head>
+<body>
+    <h1>Hola</h1>    
+    <script>
+
+        //consingna 1.1
+
+        //Implementar las propiedades instancia desde los valores recibidos como argumento
+        function Usuario ( nombre, apellido , libros, mascotas ) {
+            this.nombre = nombre; //(string)
+            this.apellido = apellido; //(string)
+            this.libros = libros; //(array de objetos)
+            this.mascotas= mascotas; //(array de strings)
+        }
+
+        //métodos en su prototipo
+
+        //retornar un string con el nombre y apellido del usuario. (con template string)
+        Usuario.prototype.getFullName = function() {                    
+            return (`${this.nombre} ${this.apellido}`)
+        }
+
+        //agregar una mascota al arreglo de mascotas del usuario.
+        Usuario.prototype.addMascota = function(mascota) {
+            this.mascotas.push(mascota)
+            return
+        }
+
+        //retornar la cantidad de mascotas que tiene el usuario       
+        Usuario.prototype.getMascotas = function() {
+            console.log (this.mascotas.length)
+        }
+
+        //consingna 1.2
+
+        //recibe 2 strings y debe agrega un objeto al arreglo de libros del usuario.
+        Usuario.prototype.addBook = function(book, paramAutor) {
+           const libroNuevo= {nombre: book, autor: paramAutor}
+           this.libros.push(libroNuevo)
+           return;
+        }
+
+        //retornar un arreglo con sólo los nombres del arreglo de libros del usuario.
+        Usuario.prototype.getBooks = function() {
+           let books = this.libros.map((book)=> book.nombre)
+           console.log(books)           
+           return(books)
+        }
+            
+        //test
+
+        let libros = [
+            {nombre: 'El señor de las moscas', autor: 'William Golding'},
+            {nombre: 'Fundacion', autor: 'Isaac Asimov'}
+        ];
+        let mascotasUsuario = [" perro", " delfin"]
+
+        const usuario = new Usuario("Lyadelís", "Lazarde", libros, mascotasUsuario);
+
+        console.log(usuario)
+        console.log(usuario.getFullName());
+        usuario.addMascota(" león");
+        console.log(`mascotas de usuario: ${mascotasUsuario}`)
+        usuario.getMascotas()
+
+        usuario.addBook("Harry Potter", "J.K. Rowling")
+        usuario.getBooks()       
+        
+    </script>
+</body>
+</html>
