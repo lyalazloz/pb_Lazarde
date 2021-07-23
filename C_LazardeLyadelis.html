@@ -25,64 +25,59 @@
 
             //retornar un string con el nombre y apellido del usuario. (con template string)
             getFullName() {                    
-                console.log((`${this.nombre} ${this.apellido}`))
-                return
-            }
+                return (`${this.nombre} ${this.apellido}`);                
+            };
 
             //agregar una mascota al arreglo de mascotas del usuario.
             addMascota(mascota) {
-                this.mascotas.push(mascota)
-                return
-            }
+                this.mascotas.push(mascota);
+            };
 
             //retornar la cantidad de mascotas que tiene el usuario       
             getMascotas() {
-                console.log (this.mascotas.length)
-                return
-            }
+                return this.mascotas.length;
+            };
 
             //consingna 2.2
 
             //recibe 2 strings y debe agrega un objeto al arreglo de libros del usuario.
             addBook(book, paramAutor) {
                 const libroNuevo= {nombre: book, autor: paramAutor}
-                this.libros.push(libroNuevo)
-                return;
-            }
+                this.libros.push(libroNuevo);              
+            };
 
             //retornar un arreglo con sólo los nombres del arreglo de libros del usuario.
             getBooks() {
-                let books = this.libros.map((book)=> book.nombre)
-                console.log(books)           
-                return(books)
-            }
-        }      
+                const books = this.libros.map((book)=> book.nombre);                       
+                return books;
+            };
+        };    
 
         //test
 
-        let nombre ="Lya";
-        let apellido = "Laz";
-        let libros = [];
-        let mascotas = [];
+        const nombre ="Lya";
+        const apellido = "Laz";
+        const libros = [];
+        const mascotas = [];
 
-        const usuario = new Usuario(nombre, apellido, libros, mascotas); //opcion 1
-        const usuario0 = new Usuario("PinPon", "EsUnMuñeco", libros, mascotas); //opcion 2
-        const usuario1 = new Usuario("Sebastián", "Otero", [], []); //opcion 3
+        const usuario = new Usuario(nombre, apellido, libros, mascotas);
+        const usuario0 = new Usuario("PinPon", "EsUnMuñeco", libros, mascotas);
+        const usuario1 = new Usuario("Sebastián", "Otero", [], []);
         
-        console.log(usuario)
-        console.log(usuario0)
-        console.log(usuario1)
-        usuario.getFullName();
+        console.log(usuario);
+        console.log(usuario0);
+        console.log(usuario1);
+        console.log(usuario.getFullName());
 
         usuario.addMascota(" canguro");
         usuario0.addMascota(" mono");
         usuario1.addMascota(" delfin");
-        usuario.getMascotas()
+        console.log(usuario.getMascotas());
 
-        usuario.addBook("Una Canción para Lya", "George R.R. Martin")
-        usuario.addBook("El señor de las moscas", "William Golding")
-        usuario.addBook("Fundacion", "Isaac Asimov")
-        usuario.getBooks()       
+        usuario.addBook("Una Canción para Lya", "George R.R. Martin");
+        usuario.addBook("El señor de las moscas", "William Golding");
+        usuario.addBook("Fundacion", "Isaac Asimov");
+        console.log(usuario.getBooks());
            
     </script> 
   </body>
