@@ -25,7 +25,7 @@ function operacion ( numero1: number, numero2: number , operacion: string ) {
           } else {console.log("operacon no encontrada")};
 
         } catch (error) {
-            console.log(error);
+          console.log(error);
         };
       });            
 
