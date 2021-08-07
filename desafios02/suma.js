@@ -5,7 +5,10 @@ var Suma = /** @class */ (function () {
         this.numero1 = numero1;
         this.numero2 = numero2;
     }
-    Suma.prototype.resultado = function () { this.numero1 + this.numero2; };
+    ;
+    Suma.prototype.resultado = function () { return this.numero1 + this.numero2; };
+    ;
     return Suma;
 }());
 exports["default"] = Suma;
+;

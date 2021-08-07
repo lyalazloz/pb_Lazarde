@@ -35,60 +35,63 @@ var __generator = (this && this.__generator) || function (thisArg, body) {
     }
 };
 function operacion(numero1, numero2, operacion) {
-    var _this = this;
-    this.numero1 = numero1;
-    this.numero2 = numero2;
-    this.operacion = operacion;
-    return new Promise(function (resolve, reject) {
-        setTimeout(function () {
-            resolve(function () { return __awaiter(_this, void 0, void 0, function () {
-                var suma, resta, error_1;
-                return __generator(this, function (_a) {
-                    switch (_a.label) {
-                        case 0:
-                            _a.trys.push([0, 6, , 7]);
-                            if (!(operacion.toLowerCase() === "suma")) return [3 /*break*/, 2];
-                            return [4 /*yield*/, Promise.resolve().then(function () { return require('./suma.js'); })];
-                        case 1:
-                            suma = (_a.sent())["default"];
-                            new suma(numero1, numero2);
-                            return [2 /*return*/, suma.resultado()];
-                        case 2:
-                            if (!(operacion.toLowerCase() === "resta")) return [3 /*break*/, 4];
-                            return [4 /*yield*/, Promise.resolve().then(function () { return require('./resta.js'); })];
-                        case 3:
-                            resta = (_a.sent())["default"];
-                            new resta(numero1, numero2);
-                            return [2 /*return*/, resta.resultado()];
-                        case 4:
-                            console.log("operacon no encontrada");
-                            _a.label = 5;
-                        case 5:
-                            ;
-                            return [3 /*break*/, 7];
-                        case 6:
-                            error_1 = _a.sent();
-                            console.log(error_1);
-                            return [3 /*break*/, 7];
-                        case 7:
-                            ;
-                            return [2 /*return*/];
-                    }
-                });
-            }); });
-            reject("Esto dio un error");
-        }, 1000);
+    return __awaiter(this, void 0, void 0, function () {
+        var operacionPromise, resolve_1, error_1;
+        var _this = this;
+        return __generator(this, function (_a) {
+            switch (_a.label) {
+                case 0:
+                    operacionPromise = new Promise(function (resolve, reject) { return __awaiter(_this, void 0, void 0, function () {
+                        var suma, suma2, sumaResultado, resta, resta2, restaResultado;
+                        return __generator(this, function (_a) {
+                            switch (_a.label) {
+                                case 0:
+                                    if (!(operacion.toLowerCase() === "suma")) return [3 /*break*/, 2];
+                                    return [4 /*yield*/, Promise.resolve().then(function () { return require('./suma.js'); })];
+                                case 1:
+                                    suma = (_a.sent())["default"];
+                                    suma2 = new suma(numero1, numero2);
+                                    sumaResultado = suma2.resultado();
+                                    resolve(sumaResultado);
+                                    return [3 /*break*/, 5];
+                                case 2:
+                                    if (!(operacion.toLowerCase() === "resta")) return [3 /*break*/, 4];
+                                    return [4 /*yield*/, Promise.resolve().then(function () { return require('./resta.js'); })];
+                                case 3:
+                                    resta = (_a.sent())["default"];
+                                    resta2 = new resta(numero1, numero2);
+                                    restaResultado = resta2.resultado();
+                                    resolve(restaResultado);
+                                    return [3 /*break*/, 5];
+                                case 4:
+                                    reject(console.log("Esto dio un error"));
+                                    _a.label = 5;
+                                case 5:
+                                    ;
+                                    return [2 /*return*/];
+                            }
+                        });
+                    }); });
+                    _a.label = 1;
+                case 1:
+                    _a.trys.push([1, 3, , 4]);
+                    return [4 /*yield*/, operacionPromise];
+                case 2:
+                    resolve_1 = _a.sent();
+                    return [2 /*return*/, console.log(resolve_1)];
+                case 3:
+                    error_1 = _a.sent();
+                    return [2 /*return*/, console.log(error_1)];
+                case 4:
+                    ;
+                    return [2 /*return*/];
+            }
+        });
     });
 }
 ;
-function operaciones() {
-    // operaciones es una funcion, no recibe parametro y simplemente se encarga de llamar una o mas veces a operacion
-    // operaciones llamará a operacion con los casos de prueba, representando sus salidas.
-    operacion(1, 2, "suma");
-}
-console.log(operaciones);
-// se va a construir un objeto, pasandole los numeros
-// se va a llamar al resultado del objeto
-// se va a resolver la promesa con ese valor ( o en caso de fallo se va a rechazar)
-// Este debe ser un proyecto de typescript que utilice dynamic import, Promises, async await, funciones flecha . 
-// Debe ser compilado para generar un archivo javascript ejecutable por Node.js.
+var operaciones = function (a, b, c) { operacion(a, b, c); };
+operaciones(2, 1, "suma");
+operaciones(2, 1, "resta");
+operaciones(8, 8, "suma");
+operaciones(8, 18, "resta");

@@ -1,53 +1,35 @@
 
-function operacion ( numero1: number, numero2: number , operacion: string ) {
-  this.numero1 = numero1; 
-  this.numero2 = numero2;
-  this.operacion = operacion;
+async function operacion ( numero1: number, numero2: number , operacion: string ) {
+
+  const operacionPromise = new Promise(async (resolve, reject) => {
     
-  return new Promise((resolve, reject) => {
+    if(operacion.toLowerCase() === "suma") {
+      const {default: suma } = await import('./suma.js');
+      const suma2= new suma(numero1,  numero2);
+      const sumaResultado = suma2.resultado();     
+      resolve(sumaResultado);
+      
+    } else if (operacion.toLowerCase() === "resta") {
+      const {default: resta } = await import('./resta.js');
+      const resta2= new resta(numero1,  numero2);
+      const restaResultado = resta2.resultado();     
+      resolve(restaResultado);
 
-    setTimeout(() => {
-
-      resolve (async () => {         
-
-        try {
-
-          if (operacion.toLowerCase() === "suma") {
-            const {default: suma } = await import('./suma.js');
-            new suma(numero1,  numero2);
-            return suma
-              
-          } else if (operacion.toLowerCase() === "resta") {
-            const {default: resta } = await import('./resta.js');
-            new resta(numero1,  numero2);
-            return resta
-
-          } else {console.log("operacon no encontrada")};
-
-        } catch (error) {
-          console.log(error);
-        };
-      });            
-
-        reject("Esto dio un error");
-
-    }, 1000);
-  });  
-    
-
-    
+    } else {  
+      reject (console.log("Esto dio un error"));
+    };
+  });
+  try {
+    const resolve_1 = await operacionPromise;
+    return console.log(resolve_1);
+  } catch (error) {
+    return console.log(error);
+  };  
 };
 
-function operaciones () {
-    
-  operacion(1, 2, "suma")
-}
+const operaciones = (a: number, b: number, c: string) => {operacion(a, b, c)};
 
-console.log(operaciones)
-
-// se va a construir un objeto, pasandole los numeros
-// se va a llamar al resultado del objeto
-// se va a resolver la promesa con ese valor ( o en caso de fallo se va a rechazar)
-
-// Este debe ser un proyecto de typescript que utilice dynamic import, Promises, async await, funciones flecha . 
-// Debe ser compilado para generar un archivo javascript ejecutable por Node.js.
+operaciones(2,1, "suma");
+operaciones(2,1, "resta");
+operaciones(8,8, "suma");
+operaciones(8,18, "resta");
